@@ -1,0 +1,10 @@
+{
+  "name": "SAATHI — Rural Resilience & Care Intelligence",
+  "short_name": "SAATHI",
+  "description": "SAATHI connects the health of the household with the health of the farm.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#faf7f1",
+  "theme_color": "#1c1b17",
+  "lang": "en"
+}

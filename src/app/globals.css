@@ -1,26 +1,158 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Typography */
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), var(--font-manrope), ui-serif, Georgia, serif;
+  --font-hindi: var(--font-noto-devanagari), var(--font-manrope), sans-serif;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Deep warm charcoal */
+  --color-charcoal-950: #14130f;
+  --color-charcoal-900: #1c1b17;
+  --color-charcoal-800: #27251f;
+  --color-charcoal-700: #333129;
+  --color-charcoal-600: #4b483e;
+  --color-charcoal-500: #6c685c;
+  --color-charcoal-400: #908b7d;
+  --color-charcoal-300: #b6b1a2;
+  --color-charcoal-200: #d9d5c8;
+  --color-charcoal-100: #ece9df;
+  --color-charcoal-50: #f5f3ec;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Warm off-white paper */
+  --color-paper: #faf7f1;
+  --color-paper-deep: #f2ede2;
+  --color-paper-line: #e6e0d2;
+
+  /* Agricultural green */
+  --color-agri-900: #22392b;
+  --color-agri-800: #2b4a37;
+  --color-agri-700: #355c44;
+  --color-agri-600: #417052;
+  --color-agri-500: #528563;
+  --color-agri-400: #739f81;
+  --color-agri-300: #9cbda7;
+  --color-agri-200: #c5d8cb;
+  --color-agri-100: #e4ece4;
+  --color-agri-50: #f2f6f1;
+
+  /* Muted earth tones */
+  --color-earth-700: #6e5737;
+  --color-earth-600: #86694a;
+  --color-earth-500: #a3845f;
+  --color-earth-400: #bfa581;
+  --color-earth-300: #d6c4a8;
+  --color-earth-100: #f0e8d8;
+
+  /* Amber warnings */
+  --color-amber-700: #9a6415;
+  --color-amber-600: #b97a1f;
+  --color-amber-500: #d6933a;
+  --color-amber-400: #e2ad62;
+  --color-amber-100: #f8eed9;
+  --color-amber-50: #fbf6ea;
+
+  /* Red — serious / high risk only */
+  --color-red-800: #7d2a1d;
+  --color-red-700: #93341f;
+  --color-red-600: #b0402c;
+  --color-red-500: #c95a41;
+  --color-red-100: #f5e0d8;
+  --color-red-50: #fbf0ec;
+
+  --shadow-card: 0 1px 2px rgba(28, 27, 23, 0.04), 0 8px 24px -12px rgba(28, 27, 23, 0.12);
+  --shadow-lift: 0 2px 4px rgba(28, 27, 23, 0.05), 0 16px 40px -16px rgba(28, 27, 23, 0.22);
+
+  --radius-xl2: 1.25rem;
+
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade-in: fade-in 0.3s ease both;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+  --animate-ping-slow: ping-slow 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.55;
+    }
+  }
+  @keyframes ping-slow {
+    0% {
+      transform: scale(1);
+      opacity: 0.7;
+    }
+    75%,
+    100% {
+      transform: scale(2.1);
+      opacity: 0;
+    }
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-charcoal-900);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Devanagari (Hindi) text */
+.font-hindi {
+  font-family: var(--font-hindi);
+}
+
+/* Accessible focus */
+:focus-visible {
+  outline: 2px solid var(--color-agri-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Discreet scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-charcoal-300) transparent;
+}
+
+/* Numeric tabular figures for scores */
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Subtle paper grain texture for premium feel */
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+  background-image: radial-gradient(rgba(28, 27, 23, 0.028) 1px, transparent 1px);
+  background-size: 22px 22px;
 }
